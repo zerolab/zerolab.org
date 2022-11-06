@@ -1,0 +1,17 @@
+.env
+.idea/
+.venv
+.vscode
+
+/media/
+static/collected
+volumes
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+*.sqlite3
+
+**.pyc

@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    init: true
+    environment:
+      - DEBUG=true
+      - SECRET_KEY=shh-dont-tell-anyone
+      - DATABASE_URL=postgres://zerolab:zerolab@db/zerolab
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    ports:
+      - 127.0.0.1:8000:8000
+
+  redis:
+    image: redis:6-alpine
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_PASSWORD=zerolab
+      - POSTGRES_USER=zerolab
+    volumes:
+      - ./volumes/db:/var/lib/postgresql/data
