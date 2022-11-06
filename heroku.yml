@@ -1,0 +1,9 @@
+build:
+  docker:
+    web:
+      dockerfile: Dockerfile
+      target: production
+release:
+  image: web
+  command:
+    - /venv/bin/python manage.py createcachetable && /venv/bin/python manage.py migrate --noinput
