@@ -7,12 +7,12 @@
 
     <h2 id="recent-posts">Recent posts</h2>
     <ul class="posts">
-        {{ $posts := (where .Site.RegularPages "Section" "posts") }}
+        {{ $posts := (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
 
         {{ range first 10 $posts }}
         <li class="post__item">
             <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title | safeHTML }}</a>
-            <p class="post__meta">Published: <time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time> · {{ .ReadingTime }} {{ if (eq .ReadingTime 1) }}minute{{ else }}minutes{{ end }} read</p>
+            <p class="post__meta">Published: <time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .Date }}">{{ .Date | time.Format ":date_long" }}</time> · {{ .ReadingTime }} {{ if (eq .ReadingTime 1) }}minute{{ else }}minutes{{ end }} read</p>
         </li>
         {{ end }}
     </ul>

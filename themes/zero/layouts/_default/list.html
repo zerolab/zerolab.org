@@ -15,9 +15,9 @@
       {{ range (where .Site.RegularPages.ByDate.Reverse "Section" "posts").GroupByDate "2006" }}
         <h2 id="{{ .Key }}">{{ .Key }} <span>({{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }})</span> <a href="#{{ .Key }}" class="anchor">#</a></h2>
         <ul class="posts">
-          {{ range .Pages }}
+          {{ range .Pages.ByDate.Reverse }}
             <li class="post__item">
-                <span class="post__meta"><time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time> &mdash;</span>
+                <span class="post__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .Date }}">{{ .Date | time.Format ":date_long" }}</time> &mdash;</span>
                 <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title | safeHTML }}</a>
             </li>
           {{ end }}
@@ -25,9 +25,9 @@
       {{ end }}
     {{ else }}
         <ul class="posts">
-        {{ range .Pages }}
+        {{ range .Pages.ByDate.Reverse }}
             <li class="post__item">
-                <span class="post__meta"><time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time> &mdash;</span>
+                <span class="post__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .Date }}">{{ .Date | time.Format ":date_long" }}</time> &mdash;</span>
                 <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{.Title | safeHTML }}</a>
             </li>
         {{ end }}
