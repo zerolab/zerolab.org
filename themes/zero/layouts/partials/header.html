@@ -1,0 +1,38 @@
+<header role="banner" class="header wrapper">
+  <a class="header__skip" href="#main">Skip to content</a>
+
+  <div class="header__logo">
+    <a class="header__link" href="/">zerolab is Dan Braghiș</a>
+    <p class="header__description">Developer and senior grumpus at Torchbox</p>
+  </div>
+
+  <nav aria-label="primary navigation" class="header__nav">
+    <ul class="header__list" role="list">
+      <li class="header__item">
+        <a {{ if eq .RelPermalink "/posts/" }}aria-current="page"{{ end }} href="/posts" title="Posts">Posts</a>
+      </li>
+      <li class="header__item">
+        <a {{ if eq .RelPermalink "/til/" }}aria-current="page"{{ end }} href="/til" title="Things I Learned">TIL</a>
+      </li>
+      <li class="header__item">
+        <a href="/feed.xml" title="RSS Feed">RSS</a>
+      </li>
+      <li class="header__item">
+        <a
+          href="https://github.com/zerolab"
+          title="Dan Braghis on GitHub"
+          rel="me"
+          >GitHub</a
+        >
+      </li>
+      <li class="header__item">
+        <a
+          href="https://mastodon.social/@zerolab"
+          title="Dan Braghis on Mastodon"
+          rel="me"
+          >Mastodon</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>

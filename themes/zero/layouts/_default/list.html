@@ -1,0 +1,37 @@
+{{ define "main" }}
+<article class="wrapper flow prose">
+    <header>
+        <h1>{{.Title}}</h1>
+    </header>
+    {{.Content}}
+
+    {{ if eq .Title "Posts" }}
+      <ul class="posts">
+        {{- range (where .Site.RegularPages.ByDate.Reverse "Section" "posts").GroupByDate "2006" -}}
+        <li><a href="#{{ .Key }}" title="Posts from {{ .Key }}">{{ .Key }} ({{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }})</a></li>
+        {{end}}
+      </ul>
+
+      {{ range (where .Site.RegularPages.ByDate.Reverse "Section" "posts").GroupByDate "2006" }}
+        <h2 id="{{ .Key }}">{{ .Key }} <span>({{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }})</span> <a href="#{{ .Key }}" class="anchor">#</a></h2>
+        <ul class="posts">
+          {{ range .Pages }}
+            <li class="post__item">
+                <span class="post__meta"><time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time> &mdash;</span>
+                <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title | safeHTML }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    {{ else }}
+        <ul class="posts">
+        {{ range .Pages }}
+            <li class="post__item">
+                <span class="post__meta"><time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time> &mdash;</span>
+                <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{.Title | safeHTML }}</a>
+            </li>
+        {{ end }}
+        </ul>
+    {{ end }}
+</article>
+{{ end }}

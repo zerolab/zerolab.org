@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article class="flow wrapper">
+    <header>
+        <h1 id="hi">Hi, I'm Dan</h1>
+    </header>
+    <p>👋 I'm a Wagtail developer at Torchbox. This is my humble corner on the web.</p>
+
+    <h2 id="recent-posts">Recent posts</h2>
+    <ul class="posts">
+        {{ $posts := (where .Site.RegularPages "Section" "posts") }}
+
+        {{ range first 10 $posts }}
+        <li class="post__item">
+            <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title | safeHTML }}</a>
+            <p class="post__meta">Published: <time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time> · {{ .ReadingTime }} {{ if (eq .ReadingTime 1) }}minute{{ else }}minutes{{ end }} read</p>
+        </li>
+        {{ end }}
+    </ul>
+    {{ if gt (len $posts) 2 }}
+    <a href="/posts" class="button">See all {{ len $posts }} posts</a>
+    {{ end }}
+</article>
+{{ end }}

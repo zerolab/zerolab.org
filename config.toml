@@ -1,0 +1,17 @@
+baseURL = "https://zerolab.org/"
+languageCode = "en"
+title = "Stuff and nonsense"
+
+theme = "zero"
+
+[frontmatter]
+  date  = [":filename", ":default"]
+
+[permalinks]
+  posts = "/:slug/"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[outputFormats.RSS]
+  baseName = "feed"

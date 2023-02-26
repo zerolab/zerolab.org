@@ -1,0 +1,21 @@
+<div class="wrapper wrapper--pagination">
+    <div class="pagination">
+      {{ if eq .Paginator.HasPrev true }}
+      <a
+        class="btn"
+        href="{{ .Paginator.Prev.URL }}"
+        title="Go to page {{ .Paginator.Prev.PageNumber }}"
+      >
+        Page ({{ .Paginator.Prev.PageNumber }} / {{ .Paginator.TotalPages }})
+      </a>
+      {{ end }} {{ if eq .Paginator.HasNext true }}
+      <a
+        class="btn"
+        href="{{ .Paginator.Next.URL }}"
+        title="Go to page {{ .Paginator.Next.PageNumber }}"
+      >
+        Page ({{ .Paginator.Next.PageNumber }} / {{ .Paginator.TotalPages }})
+      </a>
+      {{ end }}
+    </div>
+</div>

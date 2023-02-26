@@ -1,0 +1,11 @@
+name = "zero"
+license = "MIT"
+description = ""
+homepage = "https://github.com/zerolab/zerolab.org"
+tags = []
+features = []
+min_version = "0.1.0"
+
+[author]
+  name = "Dan Braghis"
+  homepage = "https://zerolab.org"

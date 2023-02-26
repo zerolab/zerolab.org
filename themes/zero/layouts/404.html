@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="post flow wrapper">
+    <header>
+        <h1>Error 404</h1>
+        <p>The page you requested doesn't exist.</p>
+    </header>
+
+    {{ $posts := (where .Site.RegularPages "Section" "posts") }}
+    <a href="/posts" class="button">See {{ len $posts }} {{ cond (eq (len $posts) 1) "post" "posts" }}</a>
+</article>
+{{ end }}
