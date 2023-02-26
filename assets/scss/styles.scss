@@ -29,16 +29,18 @@
     --gutter: var(--space-s-m);
     --flow-space: 1.5em;
 
-    --color--dark: #1f1f1f;
-    --color--light: #f9f9f9;
-    --color-primary: #008fff;
+    --color-dark: #1f1f1f;
+    --color-light: #f9f9f9;
+    --color-primary: #4ac7ec;
+    --color-secondary: #008fff;
 
     --font-base: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
     --font-heading: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    --font-code: var(--font-heading);
 }
 
 ::selection {
-    background: var(--color-dark);
+    background-color: var(--color-dark);
     color: var(--color-light);
 }
 
@@ -173,8 +175,9 @@ h1, h2, h3 {
     font-family: var(--font-heading);
 
     span {
+        color: var(--color-secondary);
         font-style: italic;
-        color: var(--color-primary);
+        font-weight: 400;
     }
 }
 
@@ -203,4 +206,15 @@ a {
 
 .posts {
     margin-left: -2.25em;
+}
+
+.highlight pre {
+    font-family: var(--font-code);
+    font-size: var(--size-step-0);
+    padding-block: var(--space-s);
+    padding-inline: var(--space-s);
+
+    ::selection {
+        color: var(--color-primary);
+    }
 }

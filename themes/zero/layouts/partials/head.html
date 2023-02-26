@@ -8,7 +8,7 @@
     <meta name="description" content="{{ if eq .Section "posts" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   
     <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#24292e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#1f1f1f" media="(prefers-color-scheme: dark)" />
   
     <meta property="og:site_name" content="{{ .Site.Title }}">
     <meta property="og:title" content="{{ if eq .IsHome true }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
@@ -22,14 +22,9 @@
     {{ range .AlternativeOutputFormats -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
-
-    <!-- <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/feed.xml" />
-    <link rel="alternate" type="application/feed+json" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/feed.json" /> -->
   
-    {{ "<!-- https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->" | safeHTML }}
-    <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
-    <link rel="icon" href="/icon.svg" type="image/svg+xml"><!-- 16×16 -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="icon" href="/apple-touch-icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.webmanifest">
   
     {{ "<!-- Styles -->" | safeHTML }}

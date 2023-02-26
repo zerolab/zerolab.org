@@ -1,0 +1,20 @@
+{
+    "name": "zerolab.org",
+    "short_name": "zerolab",
+    "author": "Dan Braghiș",
+    "description": "Hi, I'm Dan, a software developer at Torchbox",
+    "icons": [
+        {
+            "src": "/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff"
+}
