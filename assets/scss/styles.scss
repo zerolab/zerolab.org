@@ -218,3 +218,18 @@ a {
         color: var(--color-primary);
     }
 }
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--space-xs);
+
+    list-style: none;
+    margin-top: 0;
+    padding: 0;
+
+    li::before {
+        content: "#";
+    }
+}
