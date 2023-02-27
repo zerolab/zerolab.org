@@ -1,7 +1,7 @@
 ---
 title: "Wagtail API - how to customize the detail URL"
 date: 2023-02-26T22:48:54Z
-tags: ["wagtail", "tutorial"]
+tags: ["Wagtail", "tutorial"]
 ---
 
 Note: originally posted on 13 December 2019 at https://wagtail.org/blog/wagtail-api-how-customize-detail-url/
