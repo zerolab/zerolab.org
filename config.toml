@@ -8,7 +8,7 @@ theme = "zero"
   date  = [":filename", ":default"]
 
 [permalinks]
-  posts = "/:slug/"
+  til = "/til/:slug/"
 
 [outputs]
   home = ["HTML", "RSS"]

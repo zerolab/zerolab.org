@@ -1,0 +1,17 @@
+{{ define "main" }}
+<article class="wrapper flow prose">
+    <header>
+        <h1>{{ .Title }}</h1>
+    </header>
+    {{.Content}}
+
+    <ul class="tils">
+    {{ range .Pages.ByDate.Reverse }}
+        <li class="til__item">
+            <a class="til__link" href="{{ .Permalink }}" title="{{ .Title }}">{{.Title | safeHTML }}</a>
+            &mdash; <span class="til__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .Date }}">{{ .Date | time.Format "2006-01-02" }}</time></span>
+        </li>
+    {{ end }}
+    </ul>
+</article>
+{{ end }}
