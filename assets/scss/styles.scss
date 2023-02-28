@@ -212,6 +212,7 @@ a {
 .highlight pre {
     font-family: var(--font-code);
     font-size: var(--size-step-0);
+    overflow-x: scroll;
     padding-block: var(--space-s);
     padding-inline: var(--space-s);
 

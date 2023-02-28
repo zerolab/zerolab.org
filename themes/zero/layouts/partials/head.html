@@ -15,7 +15,7 @@
     <meta property="og:url" content="{{ .Permalink | absURL }}">
     <meta property="og:type" content="{{ if eq .Type "page" }}website{{ else }}article{{ end }}">
     <meta property="og:description" content="{{ if eq .Section "posts" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-    <meta property="og:image" content="{{ if eq .Type "page" }}{{ .Site.BaseURL }}/logo.png{{ else }}{{ .Site.BaseURL }}/images/{{ .Params.image }}{{ end }}">
+    <meta property="og:image" content="{{ .Site.BaseURL }}{{ if .Params.image }}images/{{ .Params.image }}{{ else }}icon-512.png{{ end }}">
   
     <link rel="canonical" href="{{ .Permalink | absURL }}">
 
