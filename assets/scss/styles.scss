@@ -29,19 +29,33 @@
     --gutter: var(--space-s-m);
     --flow-space: 1.5em;
 
-    --color-dark: #1f1f1f;
-    --color-light: #f9f9f9;
-    --color-primary: #4ac7ec;
-    --color-secondary: #008fff;
+    --color-mono-0: #000;
+    --color--mono-15: #1f1f1f;
+    --color--mono-40: #535353;
+    --color--mono-90: #f6f5f2;
+    --color--mono-95: #f9f9f9;
+    --color--blue: #4ac7ec;
+    --color-primary: var(--color--blue);
+    --color-secondary: #78B0D9; // #008fff;
 
-    --font-base: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-    --font-heading: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
-    --font-code: var(--font-heading);
+    --theme--color-bg-base: var(--color--mono-90);
+    --theme--color-content: var(--color--mono-15);
+    --theme--color-link: var(--color--mono-15);
+    --theme--color-link-underline: var(--color--blue);
+    --theme--color-heading: var(--color--mono-0);
+    --theme--color-heading-aside: var(--color--mono-40);
+    --theme--color-selection: var(--color--mono-95);
+    --theme--color-selection-bg: var(--color--mono-15);
+
+    --font--base: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+    --font--heading: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    --font--code: var(--font--heading);
 }
 
+// Reset
 ::selection {
-    background-color: var(--color-dark);
-    color: var(--color-light);
+    background-color: var(--theme--color-selection-bg);
+    color: var(--theme--color-selection);
 }
 
 .flow > * + * {
@@ -86,7 +100,7 @@ html:focus-within {
 }
 
 body {
-    font-family: var(--font-base);
+    font-family: var(--font--base);
     line-height: 1.5;
     min-height: 100vh;
     text-rendering: optimizeSpeed;
@@ -109,9 +123,10 @@ textarea {
     font:inherit;
 }
 
-
+// Styles
 body {
-    color: var(--color-dark);
+    background: var(--theme--color-bg-base);
+    color: var(--theme--color-content);
     font-size: var(--size-base);
     display: flex;
     flex-direction: column;
@@ -172,11 +187,12 @@ h3 {
 }
 
 h1, h2, h3 {
-    font-family: var(--font-heading);
+    font-family: var(--font--heading);
+    color: var(--theme--color-heading);
 
     span {
-        color: var(--color-secondary);
-        font-style: italic;
+        font-family: var(--font--base);
+        color: var(--theme--color-heading-aside);
         font-weight: 400;
     }
 }
@@ -189,8 +205,8 @@ h1, h2, h3 {
 }
 
 a {
-    color: var(--color-dark);
-    text-decoration-color: var(--color-primary);
+    color: var(--theme--color-link);
+    text-decoration-color: var(--theme--color-link-underline);
     text-decoration-thickness: 2px;
     text-underline-offset: .5ex;
 
@@ -210,7 +226,7 @@ a {
 }
 
 .highlight pre {
-    font-family: var(--font-code);
+    font-family: var(--font--code);
     font-size: var(--size-step-0);
     overflow-x: scroll;
     padding-block: var(--space-s);

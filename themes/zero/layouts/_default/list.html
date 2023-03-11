@@ -13,7 +13,7 @@
       </ul>
 
       {{ range (where .Site.RegularPages.ByDate.Reverse "Section" "posts").GroupByDate "2006" }}
-        <h2 id="{{ .Key }}">{{ .Key }} <span>({{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }})</span> <a href="#{{ .Key }}" class="anchor">#</a></h2>
+        <h2 id="{{ .Key }}">{{ .Key }} <a href="#{{ .Key }}" class="anchor">#</a></h2>
         <ul class="posts">
           {{ range .Pages.ByDate.Reverse }}
             <li class="post__item">

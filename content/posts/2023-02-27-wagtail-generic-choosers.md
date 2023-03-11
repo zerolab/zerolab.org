@@ -17,6 +17,7 @@ from django.db import models
 from wagtail.admin.panels import FieldPanel
 from wagtail.models import Page
 
+
 class Organisation(models.Model):
     name = models.CharField(max_length=255)
 
@@ -46,7 +47,6 @@ This is where the generic viewsets come in handy. To create a custom chooser we 
 
 ```python
 # myapp/views.py
-from wagtail.admin.views.generic import chooser as chooser_views
 from wagtail.admin.viewsets.chooser import ChooserViewSet
 
 from .models import Person
@@ -69,7 +69,6 @@ from the chooser, define the `form_fields` attribute.
 
 ```python
 # myapp/views.py
-from wagtail.admin.views.generic import chooser as chooser_views
 from wagtail.admin.viewsets.chooser import ChooserViewSet
 
 from .models import Person
@@ -110,7 +109,7 @@ from wagtail.admin.viewsets.chooser import ChooserViewSet
 from .models import Person
 
 
-class ChooseView(ChooseView):
+class PersonChooseView(ChooseView):
     def get_object_list(self):
         return Person.objects.select_related("organisation").only(
             "first_name", "last_name", "organisation__name"
@@ -126,7 +125,7 @@ class ChooseView(ChooseView):
 class PersonChooserViewSet(ChooserViewSet):
     model = Person
     icon = "user"
-    choose_view_class = ChooseView
+    choose_view_class = PersonChooseView
     choose_one_text = "Choose a person"
     choose_another_text = "Choose another person"
     edit_item_text = "Edit this person"
