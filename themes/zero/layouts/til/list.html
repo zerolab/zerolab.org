@@ -8,7 +8,7 @@
     <ul class="tils">
     {{ range .Pages.ByDate.Reverse }}
         <li class="til__item">
-            <a class="til__link" href="{{ .Permalink }}" title="{{ .Title }}">{{.Title | safeHTML }}</a>
+            <a class="til__link" href="{{ .Permalink }}" title="{{ .Title | markdownify }}">{{.Title | markdownify | safeHTML }}</a>
             &mdash; <span class="til__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .Date }}">{{ .Date | time.Format "2006-01-02" }}</time></span>
         </li>
     {{ end }}

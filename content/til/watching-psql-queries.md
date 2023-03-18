@@ -1,5 +1,5 @@
 ---
-title: "Watching <code>psql</code> queries"
+title: "Watching `psql` queries"
 date: "2023-03-18 12:59:45.276335 +0000 GMT"
 tags: ["sql", "psql"]
 ---

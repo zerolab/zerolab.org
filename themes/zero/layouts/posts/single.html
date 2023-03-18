@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article class="post flow wrapper">
     <header>
-        <h1>{{ .Title | safeHTML }}</h1>
+        <h1>{{ .Title | markdownify | safeHTML }}</h1>
         <p class="post__meta">Published: <time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .Date }}">{{ .Date | time.Format ":date_long" }}</time> · {{ .ReadingTime }} {{ if (eq .ReadingTime 1) }}minute{{ else }}minutes{{ end }} read</p>
         {{ with .GetTerms "tags" }}
         <ul class="tags">

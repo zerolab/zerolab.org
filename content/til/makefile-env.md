@@ -1,5 +1,5 @@
 ---
-title: "Loading .env variables in Makefile"
+title: "Loading `.env` variables in Makefile"
 date: 2023-02-27T20:37:00Z
 source: https://lithic.tech/blog/2020-05/makefile-dot-env
 ---
