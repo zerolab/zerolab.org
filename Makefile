@@ -5,14 +5,17 @@ endif
 
 .PHONY: help new serve build deploy sync
 
-help:  ## ⁉️  - Display help comments for each make command
+help:  ## ⁉️   - Display help comments for each make command
 	@grep -E '^[0-9a-zA-Z_-]+:.*? .*$$'  \
 		$(MAKEFILE_LIST)  \
 		| awk 'BEGIN { FS=":.*?## " }; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'  \
 		| sort
 
-new:  ## 🆕  - Create a new draft post with a Y-m-d prefix
+post:  ## 🆕  - Create a new draft post with a Y-m-d prefix
 	hugo new posts/`date +%Y-%m-%d`-new-draft.md
+
+til:  ## 🆕  - Create a new draft TIL
+	hugo new til/new-draft.md
 
 build:  ## 🍄  - Generate site
 	rm -rf public && hugo --gc --minify
