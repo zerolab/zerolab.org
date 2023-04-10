@@ -1,15 +1,14 @@
+.DEFAULT_GOAL := help
+
 ifneq (,$(wildcard ./.env))
     include .env
     export
 endif
 
-.PHONY: help new serve build deploy sync
+.PHONY: help post til build serve sync deploy
 
 help:  ## ⁉️   - Display help comments for each make command
-	@grep -E '^[0-9a-zA-Z_-]+:.*? .*$$'  \
-		$(MAKEFILE_LIST)  \
-		| awk 'BEGIN { FS=":.*?## " }; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'  \
-		| sort
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9_\-\.]+:.*?## / {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 post:  ## 🆕  - Create a new draft post with a Y-m-d prefix
 	hugo new posts/`date +%Y-%m-%d`-new-draft.md
@@ -24,6 +23,7 @@ serve:  ## 🍦  - Serve locally with drafts
 	open http://localhost:1313/ && hugo serve --buildDrafts --gc
 
 sync:  ## 🔄  - Sync to server
-    rsync -avz --delete public/ ${USER}@${HOST}:${PUBLIC_DIR}
+	@echo "Syncing to $(HOST):$(PUBLIC_DIR)"
+    rsync -avz --delete -e ssh public/ $(USER)@$(HOST):$(PUBLIC_DIR)
 
 deploy: build sync  ## 🚀  - Build and deploy
