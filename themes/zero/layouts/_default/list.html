@@ -17,7 +17,7 @@
         <ul class="posts">
           {{ range .Pages.ByDate.Reverse }}
             <li class="post__item">
-                <span class="post__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .Date }}">{{ .Date | time.Format ":date_long" }}</time> &mdash;</span>
+                <span class="post__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}" title="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}">{{ .Date | time.Format "2006-01-02" }}</time> &mdash;</span>
                 <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title | markdownify | safeHTML }}</a>
             </li>
           {{ end }}
@@ -27,7 +27,7 @@
         <ul class="posts">
         {{ range .Pages.ByDate.Reverse }}
             <li class="post__item">
-                <span class="post__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .Date }}">{{ .Date | time.Format ":date_long" }}</time> &mdash;</span>
+                <span class="post__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .PublishDate }}" title="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}">{{ .Date | time.Format "2006-01-02" }}</time> &mdash;</span>
                 <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{.Title | markdownify | safeHTML }}</a>
             </li>
         {{ end }}
