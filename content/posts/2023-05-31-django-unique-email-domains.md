@@ -1,8 +1,7 @@
 ---
 title: "Get unique domains for an email field on a model"
-date: "2023-05-31 10:53:07.7977 +0100 BST"
-tags: [Django]
-source:
+date: 2023-05-31 10:53:07
+tags: ["Django"]
 ---
 
 ```python

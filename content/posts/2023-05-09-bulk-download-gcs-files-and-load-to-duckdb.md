@@ -1,8 +1,7 @@
 ---
 title: "Fetch Parquet files from Google Cloud Storage and load them into DuckDB"
-date: "2023-05-09 21:46:24.627184 +0100 BST"
-tags: []
-source:
+date: 2023-05-09 21:46:24
+tags: ["DuckDB", "Parquet", "GCS"]
 ---
 
 [DuckDB](https://duckdb.org/) is a new(ish) SQLite-like database with a focus on analytical queries.

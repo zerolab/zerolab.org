@@ -1,6 +1,6 @@
 ---
 title: "Django over HTTPS in local Docker"
-date: "2023-09-13 22:57:13.07777 +0100 BST m=+0.056481584"
+date: 2023-09-13 22:00:00
 tags: ["Django", "Docker"]
 ---
 
