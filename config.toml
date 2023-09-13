@@ -7,9 +7,6 @@ theme = "zero"
 [frontmatter]
   date  = [":filename", ":default"]
 
-[permalinks]
-  til = "/til/:slug/"
-
 [outputs]
   home = ["HTML", "RSS"]
 

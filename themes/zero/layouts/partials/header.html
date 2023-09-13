@@ -9,10 +9,7 @@
   <nav aria-label="primary navigation" class="header__nav">
     <ul class="header__list" role="list">
       <li class="header__item">
-        <a {{ if eq .RelPermalink "/posts/" }}aria-current="page"{{ end }} href="/posts" title="Posts">Posts</a>
-      </li>
-      <li class="header__item">
-        <a {{ if eq .RelPermalink "/til/" }}aria-current="page"{{ end }} href="/til" title="Things I Learned">TIL</a>
+        <a {{ if eq .RelPermalink "/posts/" }}aria-current="page"{{ end }} href="/posts" title="Posts and notes">Posts</a>
       </li>
       <li class="header__item">
         <a href="/feed.xml" title="RSS Feed">RSS</a>
