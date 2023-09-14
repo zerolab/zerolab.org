@@ -246,6 +246,7 @@ p > code {
     overflow-x: scroll;
     padding-block: var(--space-s);
     padding-inline: var(--space-s);
+    line-height: 1.8;
 
     ::selection {
         color: var(--color-primary);
