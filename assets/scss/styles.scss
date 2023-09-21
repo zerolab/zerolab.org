@@ -267,3 +267,15 @@ p > code {
         content: "#";
     }
 }
+
+
+blockquote {
+    border-left: 0.5rem solid var(--color-secondary);
+    padding: 0.5rem 1rem;
+}
+
+
+sup {
+    vertical-align: super;
+    font-size: 0.75em;
+}

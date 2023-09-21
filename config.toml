@@ -12,3 +12,9 @@ theme = "zero"
 
 [outputFormats.RSS]
   baseName = "feed"
+
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
