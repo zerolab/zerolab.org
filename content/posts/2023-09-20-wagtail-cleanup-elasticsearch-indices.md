@@ -25,8 +25,10 @@ green  open   wagtail__documents_customdocument_xtwnqfk <UUID>   1   1          
 green  open   wagtail__wagtailcore_page_zqkorrt         <UUID>   1   1         3251            0      6.8mb          3.4mb
 green  open   wagtail__wagtailcore_page_bqsaiep         <UUID>   1   1         3238            0      6.9mb          3.4mb
 green  open   wagtail__wagtailcore_page_nm7irjb         <UUID>   1   1         6792           95     23.7mb         11.7mb
-
 ```
+
+You can further tweak this by running `GET /_cat/indices?h=creation.date.string,index` which will return the indices by creation date (h/t Alex Morega)
+
 
 `GET /_cat/aliases` <sup>[3]</sup> - gives you the list of aliases
 
