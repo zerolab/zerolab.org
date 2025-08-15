@@ -1,33 +1,22 @@
 :root {
-    --space-zero:clamp(0rem,-0.02rem + 0.11vw,0.0625rem);
-    --space-3xs: clamp(0.31rem, calc(0.29rem + 0.11vw), 0.38rem);
-    --space-2xs: clamp(0.56rem, calc(0.50rem + 0.33vw), 0.75rem);
-    --space-xs: clamp(0.88rem, calc(0.79rem + 0.43vw), 1.13rem);
-    --space-s: clamp(1.13rem, calc(0.99rem + 0.65vw), 1.50rem);
-    --space-m: clamp(1.69rem, calc(1.49rem + 0.98vw), 2.25rem);
-    --space-l: clamp(2.25rem, calc(1.99rem + 1.30vw), 3.00rem);
-    --space-xl: clamp(3.38rem, calc(2.98rem + 1.96vw), 4.50rem);
-    --space-2xl: clamp(4.50rem, calc(3.98rem + 2.61vw), 6.00rem);
-    --space-3xl: clamp(6.75rem, calc(5.97rem + 3.91vw), 9.00rem);
+    --line-height: 1.7777777778em;
+    --flow: 1lh;
+    --flow-fallback: var(--line-height);
+    --flow-l: 2lh;
+    --flow-l-fallback: calc(var(var(--line-height)) * 2);
 
-    --space-3xs-2xs: clamp(0.31rem, calc(0.16rem + 0.76vw), 0.75rem);
-    --space-2xs-xs: clamp(0.56rem, calc(0.37rem + 0.98vw), 1.13rem);
-    --space-xs-s: clamp(0.88rem, calc(0.66rem + 1.09vw), 1.50rem);
-    --space-s-m: clamp(1.13rem, calc(0.73rem + 1.96vw), 2.25rem);
-    --space-m-l: clamp(1.69rem, calc(1.23rem + 2.28vw), 3.00rem);
-    --space-l-xl: clamp(2.25rem, calc(1.47rem + 3.91vw), 4.50rem);
-    --space-xl-2xl: clamp(3.38rem, calc(2.46rem + 4.57vw), 6.00rem);
-    --space-2xl-3xl: clamp(4.50rem, calc(2.93rem + 7.83vw), 9.00rem);
+    --space-base: var(--line-height);
+    --space-xs: calc(var(--space-base) / 4);
+    --space-s: calc(var(--space-base) / 2);
+    --space-l: calc(var(--space-base) * 2);
 
-    --size-base: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
-    --size-step-0: clamp(0.8125rem, 0.79rem + 0.11vw, 0.875rem);
-    --size-step-1: clamp(1.1875rem, 1.12rem + 0.33vw, 1.375rem);
-    --size-step-2: clamp(1.4375rem, 1.33rem + 0.54vw, 1.75rem);
-    --size-step-3: clamp(1.6875rem, 1.51rem + 0.87vw, 2.1875rem);
-    --size-step-4: clamp(2.0625rem, 1.85rem + 1.09vw, 2.6875rem);
+    --size-base: 1.125em;
+    --size-step-0: 1em;
+    --size-step-1: 1.25em;
+    --size-step-2: 1.5em;
+    --size-step-3: 2em;
 
-    --gutter: var(--space-s-m);
-    --flow-space: 1.5em;
+    --gutter: var(--line-height);
 
     --color-mono-0: #000;
     --color--mono-15: #1f1f1f;
@@ -61,7 +50,8 @@
 }
 
 .flow > * + * {
-    margin-block-start: var(--flow-space, 1em);
+    margin-block-start: var(--flow-fallback);
+    margin-block-start: var(--flow);
 }
 
 .flow :is(h2 + *, h3 + *, h4 + *) {
@@ -87,6 +77,9 @@ p {
     margin: 0;
 }
 
+ol, ul {
+    margin-block: var(--flow);
+}
 ol[role=list],
 ul[role=list] {
     list-style: none;
@@ -103,7 +96,7 @@ html:focus-within {
 
 body {
     font-family: var(--font--base);
-    line-height: 1.5;
+    line-height: var(--line-height);
     min-height: 100vh;
     text-rendering: optimizeSpeed;
 }
@@ -133,22 +126,22 @@ body {
     display: flex;
     flex-direction: column;
     font-weight: 400;
-    line-height: 1.6;
 }
 
 .wrapper {
     margin-left: auto;
     margin-right: auto;
-    width: clamp(16rem, 93vw, 75rem);
+    width: clamp(16rem, 90vw, 68rem);
 }
 
 .header {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--gutter, var(--space-s-l));
+    gap: var(--gutter-l);
     justify-content: space-between;
-    padding-block: var(--space-m);
+    padding-block: var(--flow-fallback) var(--flow-l-fallback);
+    padding-block: var(--flow) var(--flow-l);
 }
 
 .header__skip {
@@ -166,7 +159,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: var(--space-xs-s);
+    gap: var(--gutter);
+    margin-block: var(--flow-fallback);
+    margin-block: var(--flow);
 }
 
 main {
@@ -174,15 +169,41 @@ main {
 }
 
 article {
-    padding-block: var(--space-l-xl);
+    padding-block: var(--flow);
+}
+
+article > header {
+    text-align: center;
+}
+
+article > header h1 {
+    display: inline-block;
+}
+
+article > header .post__meta {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-s);
+    padding-block-start: 1em;
+    padding-block-end: 1em;
+    padding-block-start: calc(var(--flow) * 0.5);
+    padding-block-end: calc(var(--flow) * 0.5);
+}
+
+header .post__meta .tags {
+    margin-bottom: 0;
 }
 
 h1 {
-    font-size:var(--size-step-3);
+    font-size: var(--size-step-3);
+    line-height: var(--line-height);
+
 }
+
 h2 {
     font-size:var(--size-step-2);
 }
+
 h3 {
     font-size: var(--size-step-1);
     line-height: 1.2;
@@ -203,7 +224,6 @@ h1, h2, h3 {
     display: flex;
     font-weight: 700;
     gap: 1ch;
-    line-height: 1.2;
 }
 
 a {
@@ -222,15 +242,12 @@ a {
     display: none;
 }
 
+
 .posts,
 .tils {
     margin-left: -2.25em;
 }
 
-.post__item,
-.til__item {
-    margin-bottom: 1em;
-}
 
 .pre,
 .code {
@@ -244,9 +261,8 @@ p > code {
 .highlight pre {
     font-size: var(--size-step-0);
     overflow-x: scroll;
-    padding-block: var(--space-s);
+    padding-block: var(--flow);
     padding-inline: var(--space-s);
-    line-height: 1.8;
 
     ::selection {
         color: var(--color-primary);
@@ -278,4 +294,15 @@ blockquote {
 sup {
     vertical-align: super;
     font-size: 0.75em;
+}
+
+.grid-lines {
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent calc(var(--line-height) - 1px),
+        light-dark(#00e8e8, color(display-p3 0 0.634 0.64)) calc(var(--line-height) - 1px),
+        light-dark(#00e8e8, color(display-p3 0 0.634 0.64)) var(--line-height)
+    );
+    background-size: 100% var(--line-height);
 }

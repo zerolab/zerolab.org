@@ -8,7 +8,7 @@
     {{ if eq .Title "Posts" }}
       <ul class="posts">
         {{- range (where .Site.RegularPages.ByDate.Reverse "Section" "posts").GroupByDate "2006" -}}
-        <li><a href="#{{ .Key }}" title="Posts from {{ .Key }}">{{ .Key }} ({{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }})</a></li>
+        <li class="post__item"><a href="#{{ .Key }}" title="Posts from {{ .Key }}">{{ .Key }} ({{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }})</a></li>
         {{end}}
       </ul>
 
