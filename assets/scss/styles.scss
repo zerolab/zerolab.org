@@ -26,6 +26,7 @@
     --color--blue: #4ac7ec;
     --color--red: #fa7416;
     --color--yellow: #ffc500;
+    --color--yellow-lighter: #feeca0;
     --color-primary: var(--color--blue);
     --color-secondary: #78B0D9; // #008fff;
 
@@ -119,6 +120,10 @@ textarea {
 }
 
 // Styles
+@view-transition {
+  navigation: auto;
+}
+
 body {
     background: var(--theme--color-bg-base);
     color: var(--theme--color-content);
@@ -172,7 +177,7 @@ article {
     padding-block: var(--flow);
 }
 
-article > header {
+article > header:not(.simple) {
     text-align: center;
 }
 
@@ -305,4 +310,24 @@ sup {
         light-dark(#00e8e8, color(display-p3 0 0.634 0.64)) var(--line-height)
     );
     background-size: 100% var(--line-height);
+}
+
+.warning {
+    background-color: var(--color--yellow-lighter);
+    border: 2px solid var(--color--yellow);
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.warning--label {
+    position: relative;
+    padding-top: 2em;
+}
+
+.warning__label {
+    background-color: var(--color--yellow);
+    position: absolute;
+    left: -2px;
+    top: -0.75em;
+    padding: 0.25em 0.5em;
 }

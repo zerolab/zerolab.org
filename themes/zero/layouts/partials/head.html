@@ -27,7 +27,19 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.webmanifest">
   
-    {{ "<!-- Styles -->" | safeHTML }}
-    {{- $styles := resources.Get "scss/styles.scss" | toCSS (dict "outputStyle" "compressed") | minify }}
-    <style>{{ $styles.Content | safeCSS }}</style>
+{{- with resources.Get "scss/styles.scss" -}}
+  {{- $opts := dict
+    "outputStyle" "compressed"
+    "targetPath" "css/main.css"
+    "transpiler" "libsass"
+  -}}
+  {{- with . | toCSS $opts -}}
+    {{- with . | minify -}}
+      {{- $minified := .RelPermalink -}} {{/* hack to get this usable for the rss feed web preview */}}
+      {{- with . | minify | fingerprint -}}
+          <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" data-canonical="{{ $minified }}">
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
   </head>

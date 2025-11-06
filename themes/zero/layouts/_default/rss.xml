@@ -17,12 +17,11 @@
     <title>{{ .Site.Title }}</title>
     <link>{{ .Permalink }}</link>
     <description>{{ .Site.Params.description }}</description>
-    <generator>Hugo -- gohugo.io</generator>{{ if not .Date.IsZero }}
-    <lastBuildDate>{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate | safeHTML }}</lastBuildDate>{{ end }}
-    {{ with .OutputFormats.Get "RSS" }}
+    {{- if not .Date.IsZero }}<lastBuildDate>{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate | safeHTML }}</lastBuildDate>{{ end -}}
+    {{- with .OutputFormats.Get "RSS" -}}
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
-    {{ end }}
-    {{ range $pages.ByDate.Reverse }}
+    {{- end -}}
+    {{- range $pages.ByDate.Reverse -}}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
@@ -31,6 +30,6 @@
       <guid>{{ .Permalink }}</guid>
       <description>{{ .Content | html }}</description>
     </item>
-    {{ end }}
+    {{- end -}}
   </channel>
 </rss>
