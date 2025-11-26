@@ -13,8 +13,8 @@
       </head>
       <body>
         <header role="banner" class="header wrapper">
-          <div class="warning warning--label">
-            <h2 class="warning__label">Note</h2>
+          <div class="note note--label">
+            <h2 class="note__label">Note</h2>
             <strong>This is a web feed,</strong> also known as an RSS feed. <strong>Subscribe</strong> by copying the URL from the address bar into your newsreader.
           </div>
 

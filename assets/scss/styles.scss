@@ -312,19 +312,19 @@ sup {
     background-size: 100% var(--line-height);
 }
 
-.warning {
+.note {
     background-color: var(--color--yellow-lighter);
     border: 2px solid var(--color--yellow);
     padding: 1em;
     margin-bottom: 1em;
 }
 
-.warning--label {
+.note--label {
     position: relative;
     padding-top: 2em;
 }
 
-.warning__label {
+.note__label {
     background-color: var(--color--yellow);
     position: absolute;
     left: -2px;
