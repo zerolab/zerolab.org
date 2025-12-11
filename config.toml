@@ -18,3 +18,13 @@ theme = "zero"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+
+[params]
+  [params.author]
+    name = 'Dan Braghis'
+    email = 'hello+feed@zerolab.org'
+
+[services]
+  [services.rss]
+    limit = 20

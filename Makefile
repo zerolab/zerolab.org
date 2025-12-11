@@ -27,7 +27,7 @@ build:  ## 🍄  - Generate site
 	hugo --gc --minify
 
 sync:  ## 🔄  - Sync to server
-	rsync -avz --delete -e ssh public/ $(USER)@$(HOST):$(PUBLIC_DIR)
+	rsync -avz --checksum --delete --omit-dir-times -e ssh public/ $(USER)@$(HOST):$(PUBLIC_DIR)
 
 publish: ## 🚀  - Build and deploy
 	@make build

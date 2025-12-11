@@ -1,3 +1,22 @@
+{{- $authorEmail := "" }}
+{{- with site.Params.author }}
+  {{- if reflect.IsMap . }}
+    {{- with .email }}
+      {{- $authorEmail = . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- $authorName := "" }}
+{{- with site.Params.author }}
+  {{- if reflect.IsMap . }}
+    {{- with .name }}
+      {{- $authorName = . }}
+    {{- end }}
+  {{- else }}
+    {{- $authorName  = . }}
+  {{- end }}
+{{- end }}
 {{- $pctx := . -}}
 {{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
 {{- $pages := slice -}}
@@ -17,18 +36,18 @@
     <title>{{ .Site.Title }}</title>
     <link>{{ .Permalink }}</link>
     <description>{{ .Site.Params.description }}</description>
-    {{- if not .Date.IsZero }}<lastBuildDate>{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate | safeHTML }}</lastBuildDate>{{ end -}}
+    {{- if not .Date.IsZero }}<lastBuildDate>{{ dateFormat "Mon, 02 Jan 2006 15:04:05 GMT" .PublishDate | safeHTML }}</lastBuildDate>{{ end -}}
     {{- with .OutputFormats.Get "RSS" -}}
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end -}}
     {{- range $pages.ByDate.Reverse -}}
     <item>
-      <title>{{ .Title }}</title>
+      <title>{{ .Title | plainify }}</title>
       <link>{{ .Permalink }}</link>
-      <pubDate>{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate | safeHTML }}</pubDate>
-      {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
+      <pubDate>{{ dateFormat "Mon, 02 Jan 2006 15:04:05 GMT" .PublishDate | safeHTML }}</pubDate>
+      {{ with $authorEmail }}<author>{{.}}{{ with $authorName }} ({{.}}){{end}}</author>{{end}}
       <guid>{{ .Permalink }}</guid>
-      <description>{{ .Content | html }}</description>
+      <description>{{ .Content | transform.XMLEscape | html }}</description>
     </item>
     {{- end -}}
   </channel>
