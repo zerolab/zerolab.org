@@ -1,7 +1,7 @@
 ---
 title: "Small Wagtail editor enhancements"
 date: "2025-12-11 18:13:00"
-tags: [Wagtail, js]
+tags: ['Wagtail', 'js']
 ---
 
 ## Pinned rich text editor toolbar
