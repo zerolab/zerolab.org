@@ -16,7 +16,7 @@ If you have access to the Elasticsearch console you could run the following chec
 
 `GET /_cat/indices` <sup>[2]</sup> - returns all indices, their status, number of primaries/replicas, documents in them and size
 
-```
+```text
 health status index                                     uuid     pri rep docs.count docs.deleted store.size pri.store.size
 green  open   wagtail__wagtailimages_image_lcgak2e      <UUID>   1   1            0            0       416b           208b
 green  open   wagtail__images_customimage_eatxk42       <UUID>   1   1          452            4    416.1kb        209.3kb
@@ -32,7 +32,7 @@ You can further tweak this by running `GET /_cat/indices?h=creation.date.string,
 
 `GET /_cat/aliases` <sup>[3]</sup> - gives you the list of aliases
 
-```
+```text
 alias                             index
 wagtail__documents_customdocument wagtail__documents_customdocument_xtwnqfk - - - -
 wagtail__images_customimage       wagtail__images_customimage_eatxk42       - - - -
@@ -48,7 +48,7 @@ reliability. On services such as Bonsai, each node counts towards your total ind
 
 `GET /_cat/shards` <sup>[4]</sup> - list all shards
 
-```
+```text
 index                                   shard  prirep    state    docs   store  ip   node
 wagtail__images_customimage_eatxk42         0     p      STARTED   452 209.3kb  <ip> <node>
 wagtail__images_customimage_eatxk42         0     r      STARTED   452 206.8kb  <ip> <node>

@@ -6,29 +6,56 @@
     {{.Content}}
 
     {{ if eq .Title "Posts" }}
-      <ul class="posts">
-        {{- range (where .Site.RegularPages.ByDate.Reverse "Section" "posts").GroupByDate "2006" -}}
-        <li class="post__item"><a href="#{{ .Key }}" title="Posts from {{ .Key }}">{{ .Key }} ({{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }})</a></li>
-        {{end}}
-      </ul>
-
       {{ range (where .Site.RegularPages.ByDate.Reverse "Section" "posts").GroupByDate "2006" }}
-        <h2 id="{{ .Key }}">{{ .Key }} <a href="#{{ .Key }}" class="anchor">#</a></h2>
+        <div class="flex-between">
+          <h2>{{ .Key }}</h2>
+          <small>{{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }}</small>
+        </div>
         <ul class="posts">
           {{ range .Pages.ByDate.Reverse }}
             <li class="post__item">
-                <span class="post__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}" title="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}">{{ .Date | time.Format "2006-01-02" }}</time> &mdash;</span>
-                <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title | markdownify | safeHTML }}</a>
+              <a href="{{ .Permalink }}" title="{{ .Title }}">
+                <span class="post__title">{{ .Title | markdownify | safeHTML }}</span>
+                <time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}" title="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}">{{ .Date | time.Format "1 Jan 2006" }}</time>
+              </a>
             </li>
           {{ end }}
         </ul>
       {{ end }}
+
+      <details>
+        <summary>Browse by tag</summary>
+
+        <ul class="tags">
+        {{ range site.Taxonomies.tags.ByCount }}
+            <li>
+                <a href="/tags/{{ .Term | urlize }}" title="{{ .Term }}">
+                    <span class="post__title">{{ .Term | markdownify | safeHTML }}</span>
+                    <sup>{{ .Count }}</small>
+                </a>
+            </li>
+        {{ end }}
+        </ul>
+      </details>
+    {{ else if eq .Title "Tags" }}
+        <ul class="tags">
+        {{ range site.Taxonomies.tags.ByCount }}
+            <li>
+                <a href="/tags/{{ .Term | urlize }}" title="{{ .Term }}">
+                    <span class="post__title">{{ .Term | markdownify | safeHTML }}</span>
+                    <sup>{{ .Count }}</small>
+                </a>
+            </li>
+        {{ end }}
+        </ul>
     {{ else }}
         <ul class="posts">
         {{ range .Pages.ByDate.Reverse }}
             <li class="post__item">
-                <span class="post__meta"><time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .PublishDate }}" title="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}">{{ .Date | time.Format "2006-01-02" }}</time> &mdash;</span>
-                <a class="post__link" href="{{ .Permalink }}" title="{{ .Title }}">{{.Title | markdownify | safeHTML }}</a>
+                <a href="{{ .Permalink }}" title="{{ .Title }}">
+                    <span class="post__title">{{.Title | markdownify | safeHTML }}</span>
+                    <time datetime="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 +0000" .PublishDate }}" title="{{ dateFormat "Mon, 02 Jan 2006 15:04:05 UTC" .PublishDate }}">{{ .Date | time.Format "1 Jan 2006" }}</time>
+                </a>
             </li>
         {{ end }}
         </ul>

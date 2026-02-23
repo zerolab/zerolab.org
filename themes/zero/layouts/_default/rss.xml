@@ -33,10 +33,10 @@
 {{- printf "<?xml-stylesheet href=\"/rss.xsl\" type=\"text/xsl\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ .Site.Title }}</title>
+    <title>zerolab.org</title>
     <link>{{ .Permalink }}</link>
     <language>en</language>
-    <description>zerolab.org: tech musings from Dan Braghiș</description>
+    <description>Tech musings from Dan Braghiș</description>
     <icon>{{ .Permalink }}apple-touch-icon.png</icon>
     {{- if not .Date.IsZero }}<lastBuildDate>{{ dateFormat "Mon, 02 Jan 2006 15:04:05 GMT" .PublishDate | safeHTML }}</lastBuildDate>{{ end -}}
     {{- with .OutputFormats.Get "RSS" -}}
