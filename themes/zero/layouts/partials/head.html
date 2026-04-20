@@ -1,11 +1,11 @@
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta name="author" content="Dan Braghis - {{ .Site.BaseURL }}">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dan Braghis - {{ .Site.BaseURL }}" />
     {{ hugo.Generator }}
   
     <title>{{ if eq .IsHome true }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-    <meta name="description" content="{{ if eq .Section "posts" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta name="description" content="{{ if eq .Section "posts" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
   
     <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1f1f1f" media="(prefers-color-scheme: dark)" />
@@ -15,7 +15,16 @@
     <meta property="og:url" content="{{ .Permalink | absURL }}">
     <meta property="og:type" content="{{ if eq .Type "page" }}website{{ else }}article{{ end }}">
     <meta property="og:description" content="{{ if eq .Section "posts" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-    <meta property="og:image" content="{{ .Site.BaseURL }}{{ if .Params.image }}images/{{ .Params.image }}{{ else }}icon-512.png{{ end }}">
+
+{{- $ogImage := "" -}}
+{{- if .IsPage -}}
+  {{- $ogImage = partial "og-image.html" . -}}
+{{- else -}}
+  {{- $ogImage = printf "%s%s" .Site.BaseURL "og.png" -}}
+{{- end -}}
+    {{- with $ogImage }}
+    <meta property="og:image" content="{{ . }}">
+    {{- end }}
   
     <link rel="canonical" href="{{ .Permalink | absURL }}">
 

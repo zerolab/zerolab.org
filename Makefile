@@ -15,6 +15,7 @@ post:  ## 🆕  - Create a new draft post with a Y-m-d prefix
 
 purge:  ## 🗑  - Clean up built files
 	rm -rf public
+	rm -rf resources/_gen/images/
 	
 serve:  ## 🍦  - Serve locally with drafts
 	open http://localhost:1313/ && hugo server --buildDrafts --watch --gc

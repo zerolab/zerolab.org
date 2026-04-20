@@ -1,0 +1,54 @@
+{{- $ogImageURL := "" -}}
+  {{ $base := resources.Get "og.png" }}
+  {{ $titleFont := resources.Get "fonts/Proxima Nova Bold.ttf"}}
+  {{ $lightFont := resources.Get "fonts/IBMPlexMono-Regular.ttf" }}
+  {{ $tagsFont := resources.Get "fonts/MartianMono-StdRg.ttf" }}
+
+  {{- $titleCanvas := resources.Get "og-title-base.png" -}}
+  {{- $titleCanvas = $titleCanvas.Filter (images.Text .Title (dict
+    "color" "#1f1f1f"
+    "size" 48
+    "x" 0
+    "y" 0
+    "font" $titleFont
+    "linespacing" 16
+    ))
+  -}}
+
+  {{- $img := $base.Filter (images.Overlay $titleCanvas 95 250) -}}
+
+
+  {{ $dateStr := .Date.Format "02 Jan 2006" }}
+  {{ $img = $img.Filter (images.Text $dateStr (dict
+    "color" "#1f1f1f"
+    "size" 20
+    "linespacing" 8
+    "x" 95
+    "y" 215
+    "font" $lightFont
+  )) }}
+
+  {{ $tags := delimit (apply .Params.tags "printf" "#%s" ".") ", " }}
+  {{ $img = $img.Filter (images.Text $tags (dict
+    "color" "#1f1f1f"
+    "size" 24
+    "linespacing" 8
+    "x" 95
+    "y" 550
+    "font" $tagsFont
+  ) )}}
+
+  {{ $img = $img.Filter (images.Text "zerolab.org" (dict
+    "color" "#1f1f1f"
+    "size" 24
+    "linespacing" 2
+    "x" 950
+    "y" 550
+    "font" $lightFont
+  )) }}
+
+
+  {{- $img = resources.Copy (path.Join .Page.RelPermalink "og.png") $img -}}
+
+{{- $ogImageURL = $img.Permalink -}}
+{{- return $ogImageURL -}}
